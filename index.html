@@ -2,71 +2,70 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Base Network — Official Style Portal</title>
+<title>Base Ecosystem Portal</title>
 <meta name="viewport" content="width=1200">
 
 <style>
 :root{
   --base:#0052ff;
   --base2:#3b82f6;
-  --cyan:#22d3ee;
-  --bg1:#eaf0ff;
-  --bg2:#ffffff;
+  --bg:#eef3ff;
+  --card:#ffffff;
   --text:#0a0a0a;
   --muted:#6b7280;
 }
 
-/* ===== RESET ===== */
 *{box-sizing:border-box}
+
 body{
   margin:0;
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  font-family:Inter,Segoe UI,Arial,sans-serif;
   color:var(--text);
   overflow:hidden;
 }
 
-/* ===== FULL VISUAL ANIMATED BACKGROUND ===== */
+/* ===== VISIBLE BACKGROUND ANIMATION ===== */
 .bg{
   position:fixed;
   inset:0;
-  z-index:-3;
+  z-index:-2;
   background:linear-gradient(
     120deg,
     #dbe7ff,
-    #eef3ff,
     #ffffff,
-    #e0eaff
+    #e0eaff,
+    #ffffff
   );
-  background-size:500% 500%;
-  animation:bgShift 16s ease infinite;
+  background-size:400% 400%;
+  animation:moveBg 14s linear infinite;
 }
-@keyframes bgShift{
+
+@keyframes moveBg{
   0%{background-position:0% 50%}
   50%{background-position:100% 50%}
   100%{background-position:0% 50%}
 }
 
-/* floating blobs */
-.blob{
+/* floating circles (CLEARLY MOVING) */
+.circle{
   position:fixed;
   border-radius:50%;
-  opacity:.45;
-  filter:blur(10px);
-  animation:float 20s linear infinite;
-  z-index:-2;
+  opacity:.35;
+  filter:blur(4px);
+  animation:float 18s ease-in-out infinite;
+  z-index:-1;
 }
-.b1{width:300px;height:300px;background:#0052ff;top:5%;left:5%}
-.b2{width:420px;height:420px;background:#3b82f6;bottom:-120px;left:20%;animation-duration:26s}
-.b3{width:260px;height:260px;background:#22d3ee;top:20%;right:10%;animation-duration:22s}
-.b4{width:360px;height:360px;background:#93c5fd;bottom:10%;right:25%;animation-duration:30s}
+.c1{width:220px;height:220px;background:#0052ff;top:10%;left:5%}
+.c2{width:300px;height:300px;background:#3b82f6;bottom:5%;left:20%;animation-duration:22s}
+.c3{width:260px;height:260px;background:#93c5fd;top:25%;right:10%;animation-duration:20s}
 
 @keyframes float{
   0%{transform:translate(0,0)}
-  50%{transform:translate(120px,-160px)}
+  50%{transform:translate(120px,-120px)}
   100%{transform:translate(0,0)}
 }
 
-/* ===== APP LAYOUT ===== */
+/* ===== LAYOUT ===== */
 .app{
   width:1200px;
   margin:auto;
@@ -75,18 +74,13 @@ body{
 
 .header{
   display:flex;
-  justify-content:space-between;
   align-items:center;
+  gap:14px;
   margin-bottom:40px;
 }
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:14px;
-}
 .logo{
-  width:54px;height:54px;
+  width:52px;height:52px;
   background:var(--base);
   border-radius:14px;
   color:white;
@@ -98,88 +92,79 @@ body{
 }
 
 .hero{
-  display:grid;
-  grid-template-columns:1.3fr 1fr;
-  gap:40px;
-}
-
-/* ===== CARDS WITH GRADIENT BORDER ===== */
-.card{
-  position:relative;
   background:rgba(255,255,255,.9);
-  backdrop-filter:blur(16px);
-  border-radius:26px;
-  padding:46px;
-  box-shadow:0 40px 120px rgba(0,0,0,.18);
-}
-.card::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
+  backdrop-filter:blur(10px);
   border-radius:28px;
-  background:linear-gradient(135deg,var(--base),var(--cyan));
-  z-index:-1;
+  padding:50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.15);
 }
 
-.card h1{
+.hero h1{
   font-size:42px;
   margin:0 0 14px;
 }
-.card p{
+
+.hero p{
   font-size:18px;
   color:var(--muted);
-  line-height:1.6;
 }
 
-/* buttons */
+/* ===== SEARCH BAR ===== */
+.search{
+  margin:28px 0;
+  display:flex;
+  gap:12px;
+}
+
+.search input{
+  flex:1;
+  padding:16px;
+  font-size:16px;
+  border-radius:14px;
+  border:1px solid #dbe1f0;
+}
+
+.search button{
+  padding:16px 34px;
+  font-size:16px;
+  border:none;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
+  color:white;
+  cursor:pointer;
+}
+
+/* ===== ACTIONS ===== */
 .actions{
   display:flex;
   gap:16px;
-  margin-top:24px;
+  margin-top:10px;
 }
+
 .btn{
-  padding:16px 38px;
-  font-size:17px;
+  padding:16px 36px;
+  font-size:16px;
   border-radius:14px;
-  border:none;
   cursor:pointer;
+  border:none;
 }
+
 .primary{
   background:linear-gradient(135deg,var(--base),var(--base2));
   color:white;
 }
+
 .secondary{
   background:white;
   border:2px solid var(--base);
   color:var(--base);
 }
 
-/* ===== SIDE INFO ===== */
-.side{
-  display:grid;
-  gap:22px;
-}
-.tile{
-  position:relative;
-  background:rgba(255,255,255,.95);
-  border-radius:22px;
-  padding:28px;
-  box-shadow:0 30px 80px rgba(0,0,0,.15);
-}
-.tile::before{
-  content:"";
-  position:absolute;
-  inset:-2px;
-  border-radius:24px;
-  background:linear-gradient(135deg,#3b82f6,#22d3ee);
-  z-index:-1;
-}
-
 /* ===== TEAM MODAL ===== */
 #team{
   position:fixed;
   inset:0;
-  background:rgba(0,0,0,.45);
+  background:rgba(0,0,0,.4);
   display:none;
   align-items:center;
   justify-content:center;
@@ -187,34 +172,27 @@ body{
 #team.active{display:flex}
 
 .teamBox{
-  width:900px;
+  width:800px;
   background:white;
-  border-radius:28px;
+  border-radius:26px;
   padding:40px;
-  box-shadow:0 50px 140px rgba(0,0,0,.4);
-  animation:pop .5s ease;
 }
-@keyframes pop{
-  from{transform:scale(.9);opacity:0}
-  to{transform:scale(1);opacity:1}
-}
-.teamBox h2{
-  margin-top:0;
-}
+
 .teamGrid{
   display:grid;
   grid-template-columns:repeat(3,1fr);
   gap:20px;
 }
+
 .member{
-  background:#f5f7ff;
+  background:#f4f7ff;
   padding:20px;
   border-radius:18px;
   text-align:center;
 }
-.member b{display:block;margin-bottom:6px}
+.member b{display:block}
 
-/* ===== MUSIC CONTROL ===== */
+/* ===== MUSIC BUTTON ===== */
 .music{
   position:fixed;
   bottom:20px;
@@ -224,68 +202,59 @@ body{
   background:linear-gradient(135deg,var(--base),var(--base2));
   color:white;
   cursor:pointer;
-  box-shadow:0 20px 50px rgba(0,82,255,.35);
 }
 </style>
 </head>
 
 <body>
 
-<!-- VISUAL BACKGROUND -->
+<!-- BACKGROUND -->
 <div class="bg"></div>
-<div class="blob b1"></div>
-<div class="blob b2"></div>
-<div class="blob b3"></div>
-<div class="blob b4"></div>
+<div class="circle c1"></div>
+<div class="circle c2"></div>
+<div class="circle c3"></div>
 
 <div class="app">
 
   <div class="header">
-    <div class="brand">
-      <div class="logo">B</div>
-      <b>Base Network</b>
-    </div>
+    <div class="logo">B</div>
+    <h2>Base Ecosystem Portal</h2>
   </div>
 
   <div class="hero">
+    <h1>Explore Base Network</h1>
+    <p>
+      Search official Base information, explore the ecosystem,
+      and learn about the people building on Ethereum Layer 2.
+    </p>
 
-    <div class="card">
-      <h1>Base Ecosystem Portal</h1>
-      <p>
-        A high-quality, professional experience inspired by the Base ecosystem.
-        Explore leadership, learn about the network, and experience a premium
-        animated interface.
-      </p>
-
-      <div class="actions">
-        <button class="btn primary" onclick="openTeam()">View Base Team</button>
-        <button class="btn secondary" onclick="window.open('https://base.org','_blank')">
-          Visit Base.org
-        </button>
-      </div>
+    <!-- SEARCH -->
+    <div class="search">
+      <input id="q" placeholder="Search anything about Base (fees, L2, OP Stack)">
+      <button onclick="searchBase()">Base Search</button>
     </div>
 
-    <div class="side">
-      <div class="tile">⚡ Ethereum Layer 2 built for scale</div>
-      <div class="tile">🧠 Education & ecosystem awareness</div>
-      <div class="tile">🎨 Fully animated professional UI</div>
-      <div class="tile">🔵 Base-inspired design system</div>
+    <div class="actions">
+      <button class="btn primary" onclick="openTeam()">View Base Team</button>
+      <button class="btn secondary" onclick="window.open('https://base.org','_blank')">
+        Visit Base.org
+      </button>
     </div>
-
   </div>
+
 </div>
 
-<!-- TEAM MODAL -->
+<!-- TEAM -->
 <div id="team">
   <div class="teamBox">
-    <h2>Base Leadership & Founding Team</h2>
+    <h2>Base Leadership & Team</h2>
     <div class="teamGrid">
       <div class="member"><b>Brian Armstrong</b>Coinbase CEO</div>
-      <div class="member"><b>Jesse Pollak</b>Base Lead / Engineering</div>
-      <div class="member"><b>Coinbase Exec Team</b>Core Leadership</div>
-      <div class="member"><b>Base Engineers</b>Protocol & Infra</div>
-      <div class="member"><b>Base DevRel</b>Developer Relations</div>
-      <div class="member"><b>Base Community</b>Ecosystem Growth</div>
+      <div class="member"><b>Jesse Pollak</b>Base Lead</div>
+      <div class="member"><b>Coinbase Leadership</b>Core Support</div>
+      <div class="member"><b>Base Engineers</b>Protocol Team</div>
+      <div class="member"><b>DevRel</b>Developers</div>
+      <div class="member"><b>Community</b>Ecosystem Growth</div>
     </div>
     <br>
     <button class="btn primary" onclick="closeTeam()">Close</button>
@@ -299,17 +268,14 @@ body{
 <div class="music" onclick="toggleMusic()">🎵 Music</div>
 
 <script>
-const music=document.getElementById("bgm");
-let playing=false;
-
-function toggleMusic(){
-  if(!playing){
-    music.play();
-    playing=true;
-  }else{
-    music.pause();
-    playing=false;
-  }
+function searchBase(){
+  const q=document.getElementById("q").value.trim();
+  if(!q) return alert("Type something to search");
+  window.open(
+    "https://www.google.com/search?q="+
+    encodeURIComponent(q+" site:base.org"),
+    "_blank"
+  );
 }
 
 function openTeam(){
@@ -317,6 +283,13 @@ function openTeam(){
 }
 function closeTeam(){
   document.getElementById("team").classList.remove("active");
+}
+
+const music=document.getElementById("bgm");
+let playing=false;
+function toggleMusic(){
+  if(!playing){music.play();playing=true}
+  else{music.pause();playing=false}
 }
 </script>
 
