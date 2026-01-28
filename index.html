@@ -7,22 +7,22 @@
 
 <style>
 :root{
-  --blue:#0052ff;
-  --purple:#6d5cff;
-  --pink:#ff4ecd;
-  --bg:#070b18;
-  --card:#0f1633;
-  --glow:0 0 40px rgba(0,82,255,.45);
+  --base:#0052ff;
+  --bg:#f7f9fc;
+  --card:#ffffff;
+  --text:#0a0a0a;
+  --muted:#6b7280;
+  --green:#16a34a;
+  --red:#dc2626;
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Inter,Segoe UI,Arial,sans-serif;
-  background:
-    radial-gradient(circle at top,#1c245f,#070b18 60%);
-  color:#fff;
+  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
+  background:linear-gradient(180deg,#eef3ff,#ffffff);
+  color:var(--text);
   overflow:hidden;
 }
 
@@ -36,22 +36,22 @@ body{
 
 .hero{
   width:1100px;
+  background:linear-gradient(135deg,#ffffff,#f1f5ff);
+  border-radius:28px;
   padding:60px;
-  border-radius:30px;
-  background:linear-gradient(135deg,#0d1440,#121b5a);
-  box-shadow:0 50px 150px rgba(0,0,0,.7);
   display:grid;
   grid-template-columns:1.2fr 1fr;
   gap:50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.15);
 }
 
 .logo{
-  width:64px;
-  height:64px;
-  border-radius:18px;
-  background:#fff;
-  color:#0052ff;
-  font-size:32px;
+  width:60px;
+  height:60px;
+  border-radius:16px;
+  background:var(--base);
+  color:white;
+  font-size:30px;
   font-weight:900;
   display:flex;
   align-items:center;
@@ -59,50 +59,57 @@ body{
 }
 
 .hero h1{
-  font-size:48px;
-  margin:24px 0 14px;
+  font-size:46px;
+  margin:26px 0 14px;
 }
 
 .hero p{
   font-size:18px;
-  color:#cfd6ff;
-  max-width:480px;
+  color:var(--muted);
+  max-width:500px;
+}
+
+.hero a{
+  color:var(--base);
+  font-weight:600;
+  text-decoration:none;
 }
 
 .start{
-  margin-top:28px;
-  padding:18px 42px;
+  margin-top:30px;
+  padding:18px 44px;
   font-size:18px;
   border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,var(--pink),#ff85da);
-  color:#fff;
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),#3b82f6);
+  color:white;
   cursor:pointer;
-  box-shadow:0 20px 50px rgba(255,78,205,.45);
+  box-shadow:0 20px 40px rgba(0,82,255,.3);
 }
 
 .panel{
-  background:rgba(255,255,255,.06);
+  background:#ffffff;
   border-radius:24px;
-  padding:32px;
-  box-shadow:inset 0 0 40px rgba(255,255,255,.06);
+  padding:34px;
+  box-shadow:inset 0 0 0 1px #e5e7eb;
 }
 
 .panel div{
   padding:16px;
   margin-bottom:14px;
   border-radius:16px;
-  background:rgba(0,0,0,.35);
+  background:#f7f9fc;
+  font-size:16px;
 }
 
 /* ---------- QUIZ ---------- */
 #quizPage{
   position:absolute;
   inset:0;
-  background:
-    radial-gradient(circle at top,#1b225a,#070b18 70%);
+  background:linear-gradient(180deg,#f1f5ff,#ffffff);
   transform:translateY(100%);
   transition:1s cubic-bezier(.77,0,.18,1);
+  overflow:auto;
 }
 
 #quizPage.active{
@@ -115,64 +122,58 @@ body{
 }
 
 .quiz-card{
-  background:linear-gradient(135deg,#0f1633,#19236b);
+  background:#ffffff;
   border-radius:28px;
   padding:50px;
-  box-shadow:var(--glow),0 40px 120px rgba(0,0,0,.8);
-  animation:slideIn .7s ease;
+  box-shadow:0 30px 90px rgba(0,0,0,.15);
+  animation:fade .6s ease;
 }
 
-@keyframes slideIn{
-  from{opacity:0;transform:translateY(40px)}
+@keyframes fade{
+  from{opacity:0;transform:translateY(30px)}
   to{opacity:1;transform:none}
+}
+
+.progress{
+  font-size:15px;
+  color:var(--muted);
+  margin-bottom:16px;
 }
 
 .q{
   font-size:26px;
-  margin-bottom:24px;
+  margin-bottom:22px;
 }
 
 .opt{
-  margin:12px 0;
+  margin:10px 0;
   padding:14px;
   border-radius:14px;
-  background:rgba(0,0,0,.35);
+  background:#f7f9fc;
   cursor:pointer;
   transition:.3s;
 }
 
 .opt:hover{
-  background:rgba(0,82,255,.25);
+  background:#eaf0ff;
 }
 
-.opt input{margin-right:10px}
-
 .next{
-  margin-top:30px;
+  margin-top:28px;
   width:100%;
   padding:18px;
   font-size:18px;
   border:none;
-  border-radius:16px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),#3b82f6);
   color:white;
   cursor:pointer;
-  box-shadow:var(--glow);
-}
-
-.progress{
-  margin-bottom:20px;
-  font-size:15px;
-  color:#cfd6ff;
 }
 
 .result{
   text-align:center;
   font-size:28px;
   padding:40px;
-  background:linear-gradient(135deg,#19236b,#2731a3);
-  border-radius:28px;
-  box-shadow:var(--glow);
 }
 </style>
 </head>
@@ -184,41 +185,49 @@ body{
   <div class="hero">
     <div>
       <div class="logo">B</div>
-      <h1>Base Quiz Portal</h1>
+      <h1>Base Knowledge Quiz</h1>
       <p>
-        A professional animated knowledge verification experience
-        built for the Base ecosystem.
+        Official-style knowledge verification for the Base ecosystem.  
+        Learn more at <a href="https://base.org/" target="_blank">base.org</a>
       </p>
       <button class="start" onclick="startQuiz()">Start Quiz</button>
     </div>
     <div class="panel">
       <div>⚡ Ethereum Layer 2</div>
-      <div>🧠 30 Curated Questions</div>
-      <div>🎯 Answer Submit Flow</div>
-      <div>💎 Professional UI</div>
+      <div>🧠 30 Base-related Questions</div>
+      <div>🎯 Instant Feedback</div>
+      <div>🔊 Sound Effects Enabled</div>
     </div>
   </div>
 </div>
 
-<!-- QUIZ PAGE -->
+<!-- QUIZ -->
 <div id="quizPage">
   <div class="quiz-wrap">
     <div class="quiz-card" id="card"></div>
   </div>
 </div>
 
+<!-- SOUND -->
+<audio id="correctSound">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-correct-answer-tone-2870.mp3">
+</audio>
+<audio id="wrongSound">
+  <source src="https://assets.mixkit.co/sfx/preview/mixkit-wrong-answer-fail-notification-946.mp3">
+</audio>
+
 <script>
 const questions=[
 ["Base is a","Ethereum Layer 2",["Layer 1","Ethereum Layer 2","Sidechain","Testnet"]],
-["Built by","Coinbase",["Binance","Coinbase","Ethereum","Polygon"]],
-["Uses","OP Stack",["ZK","OP Stack","Cosmos","Substrate"]],
-["Secured by","Ethereum",["Solana","Ethereum","Polygon","Base"]],
-["Goal","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT only","Private"]],
-["Official site","base.org",["base.com","base.io","base.org","coinbase.org"]],
-["EVM compatible","Yes",["No","Yes","Partial","Unknown"]],
-["Low fees","Yes",["No","Yes","High","Fixed"]],
-["Open source","Yes",["No","Yes","Closed","Private"]],
-["Supports DeFi","Yes",["No","Yes","Only NFTs","Only games"]]
+["Who built Base?","Coinbase",["Binance","Coinbase","Ethereum","Polygon"]],
+["Base uses","OP Stack",["ZK","OP Stack","Cosmos","Substrate"]],
+["Base is secured by","Ethereum",["Solana","Ethereum","Polygon","Base"]],
+["Official website","base.org",["base.com","base.io","base.org","coinbase.org"]],
+["Base is EVM compatible","Yes",["No","Yes","Partial","Unknown"]],
+["Base fees are low","Yes",["No","Yes","High","Fixed"]],
+["Base is open source","Yes",["No","Yes","Private","Closed"]],
+["Base supports DeFi","Yes",["No","Yes","Only NFTs","Only games"]],
+["Main goal of Base","Scale Ethereum",["Replace ETH","Scale Ethereum","Private","NFT only"]]
 ];
 
 while(questions.length<30){
@@ -247,11 +256,19 @@ function render(){
 
 function submitAnswer(){
   const a=document.querySelector("input[name='opt']:checked");
-  if(!a) return alert("Select an option first");
-  if(a.value===questions[index][1]) score++;
+  if(!a) return alert("Please select an option");
+
+  if(a.value===questions[index][1]){
+    document.getElementById("correctSound").play();
+    alert("✅ Correct Answer");
+    score++;
+  }else{
+    document.getElementById("wrongSound").play();
+    alert("❌ Wrong Answer");
+  }
+
   index++;
-  if(index<30) render();
-  else showResult();
+  index<30 ? render() : showResult();
 }
 
 function showResult(){
