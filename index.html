@@ -1,101 +1,177 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>Base Contribution & Quiz</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta charset="UTF-8">
+<title>Base Contribution & Quiz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #111;
-    }
-
-    .container {
-      max-width: 420px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .card {
-      background: #fff;
-      border-radius: 16px;
-      padding: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      margin-bottom: 20px;
-    }
-
-    .logo {
-      text-align: center;
-    }
-
-    .logo img {
-      width: 90px;
-    }
-
-    h2 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
-
-    p {
-      text-align: center;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .item {
-      display: flex;
-      justify-content: space-between;
-      margin: 10px 0;
-    }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #0052ff;
-      color: #fff;
-      border: none;
-      border-radius: 10px;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 12px;
-    }
-
-    .score {
-      margin-top: 14px;
-      padding: 12px;
-      background: #eef2ff;
-      border-radius: 10px;
-      text-align: center;
-      font-weight: bold;
-    }
-
-    .question {
-      margin-top: 14px;
-      font-size: 14px;
-      font-weight: bold;
-    }
-
-    .option {
-      margin: 6px 0;
-    }
-
-    footer {
-      text-align: center;
-      font-size: 12px;
-      color: #777;
-      margin-top: 10px;
-    }
-  </style>
+<style>
+body{
+  margin:0;
+  font-family:Arial, sans-serif;
+  background:#f4f6f8;
+  color:#111;
+}
+.container{
+  max-width:420px;
+  margin:auto;
+  padding:16px;
+}
+.card{
+  background:#fff;
+  border-radius:14px;
+  padding:16px;
+  margin-bottom:16px;
+  box-shadow:0 6px 20px rgba(0,0,0,0.08);
+}
+h2{
+  text-align:center;
+  margin-bottom:8px;
+}
+p{
+  text-align:center;
+  font-size:14px;
+  color:#555;
+}
+.item{
+  display:flex;
+  justify-content:space-between;
+  margin:8px 0;
+}
+button{
+  width:100%;
+  padding:10px;
+  background:#0052ff;
+  color:#fff;
+  border:none;
+  border-radius:10px;
+  font-size:14px;
+  cursor:pointer;
+  margin-top:10px;
+}
+.score{
+  margin-top:10px;
+  padding:10px;
+  background:#eef2ff;
+  border-radius:8px;
+  text-align:center;
+  font-weight:bold;
+}
+.question{
+  margin-top:12px;
+  font-weight:bold;
+  font-size:14px;
+}
+.option{
+  font-size:13px;
+  margin:4px 0;
+}
+footer{
+  text-align:center;
+  font-size:12px;
+  color:#777;
+}
+</style>
 </head>
 
 <body>
 
 <div class="container">
 
-  <!-- Contribution Tool -->
-  <div class="card">
-    <div c
+<!-- Contribution -->
+<div class="card">
+  <h2>Base Contribution</h2>
+  <p>Mark what you’ve done on Base</p>
+
+  <div class="item"><span>Used Base App</span><input type="checkbox" class="c"></div>
+  <div class="item"><span>Did Transactions</span><input type="checkbox" class="c"></div>
+  <div class="item"><span>Held Funds</span><input type="checkbox" class="c"></div>
+  <div class="item"><span>Invited Friends</span><input type="checkbox" class="c"></div>
+  <div class="item"><span>Built / Used Tool</span><input type="checkbox" class="c"></div>
+
+  <button onclick="calcContribution()">Check Score</button>
+  <div class="score" id="cScore">Contribution Score: 0 / 5</div>
+</div>
+
+<!-- Quiz -->
+<div class="card">
+  <h2>Base Quiz (30)</h2>
+  <div id="quiz"></div>
+  <button onclick="submitQuiz()">Submit Quiz</button>
+  <div class="score" id="qScore">Quiz Score: 0 / 30</div>
+</div>
+
+<footer>Built for Base 💙</footer>
+
+</div>
+
+<script>
+function calcContribution(){
+  let s=0;
+  document.querySelectorAll(".c").forEach(x=>{
+    if(x.checked) s++;
+  });
+  document.getElementById("cScore").innerText=
+  "Contribution Score: "+s+" / 5";
+}
+
+const questions=[
+["Base is a?","Ethereum Layer 2",["Layer 1","Ethereum Layer 2","Sidechain","Testnet"]],
+["Who built Base?","Coinbase",["Binance","Coinbase","Ethereum","Polygon"]],
+["Base uses which stack?","OP Stack",["ZK Stack","OP Stack","Cosmos","Substrate"]],
+["Base settles on?","Ethereum",["Solana","Base","Ethereum","Polygon"]],
+["Main goal of Base?","Scale Ethereum",["Replace ETH","Scale Ethereum","Private chain","NFT only"]],
+["Base fees are?","Low",["High","Low","Zero","Fixed"]],
+["Base is secured by?","Ethereum",["Coinbase","Ethereum","Validators","Nodes"]],
+["Base is EVM compatible?","Yes",["No","Yes","Partial","Unknown"]],
+["Base supports smart contracts?","Yes",["No","Yes","Only NFTs","Only tokens"]],
+["Official site?","base.org",["base.com","base.io","base.org","coinbase.org"]],
+
+["Base helps reduce?","Gas fees",["TPS","Gas fees","Security","Decentralization"]],
+["Base is open source?","Yes",["No","Yes","Private","Enterprise"]],
+["Base supports DeFi?","Yes",["No","Yes","Only NFTs","Only games"]],
+["Base is permissionless?","Yes",["No","Yes","Semi","Private"]],
+["Base aims adoption?","Yes",["No","Yes","Only devs","Unknown"]],
+["Base uses rollups?","Yes",["No","Yes","ZK only","Sidechain"]],
+["Base inherits security?","Yes",["No","Yes","Partial","Unknown"]],
+["Base is global?","Yes",["No","Yes","US only","EU only"]],
+["Base supports NFTs?","Yes",["No","Yes","Limited","Unknown"]],
+["Base tx speed?","Fast",["Slow","Fast","Same as L1","Unknown"]],
+
+["Base can host games?","Yes",["No","Yes","Only finance","Only NFTs"]],
+["Base vision?","Onchain future",["Offchain","Onchain future","TradFi","Mining"]],
+["Base helps builders?","Yes",["No","Yes","Only traders","Institutions"]],
+["Base ecosystem growing?","Yes",["No","Yes","Static","Declining"]],
+["Base reduces congestion?","Yes",["No","Yes","Increases","Neutral"]],
+["Base wallet support?","Yes",["No","Yes","Only Coinbase","Only MetaMask"]],
+["Base made for users?","Yes",["No","Yes","Only devs","Only traders"]],
+["Base built on Ethereum?","Yes",["No","Yes","Fork","Sidechain"]],
+["Base is scalable?","Yes",["No","Yes","Limited","Unknown"]],
+["Base future focus?","Onchain apps",["Mining","Onchain apps","Privacy","CeFi"]]
+];
+
+const quiz=document.getElementById("quiz");
+
+questions.forEach((q,i)=>{
+  quiz.innerHTML+=`<div class="question">${i+1}. ${q[0]}</div>`;
+  q[2].forEach(o=>{
+    quiz.innerHTML+=`
+    <div class="option">
+      <input type="radio" name="q${i}" value="${o}"> ${o}
+    </div>`;
+  });
+});
+
+function submitQuiz(){
+  let s=0;
+  questions.forEach((q,i)=>{
+    let a=document.querySelector('input[name="q'+i+'"]:checked');
+    if(a && a.value===q[1]) s++;
+  });
+  document.getElementById("qScore").innerText=
+  "Quiz Score: "+s+" / 30";
+}
+</script>
+
+</body>
+</html>
