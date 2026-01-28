@@ -2,194 +2,316 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Base Quiz Portal</title>
+<title>Base Professional Portal</title>
 <meta name="viewport" content="width=1200">
 
 <style>
 :root{
   --base:#0052ff;
-  --bg:#f4f7ff;
+  --base2:#3b82f6;
+  --pink:#ff4ecd;
+  --bg:#eef3ff;
   --card:#ffffff;
   --text:#0a0a0a;
   --muted:#6b7280;
 }
 
-/* ===== BACKGROUND ANIMATION ===== */
+/* ================= GLOBAL ================= */
+*{box-sizing:border-box}
+
 body{
   margin:0;
   font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--text);
   overflow:hidden;
-  background:var(--bg);
 }
 
-.bg-anim{
+/* ================= ANIMATED BACKGROUND ================= */
+.animated-bg{
   position:fixed;
   inset:0;
-  z-index:-1;
-  overflow:hidden;
+  z-index:-2;
+  background:linear-gradient(
+    120deg,
+    #dbe7ff,
+    #f1f5ff,
+    #e0eaff,
+    #ffffff
+  );
+  background-size:400% 400%;
+  animation:bgMove 18s ease infinite;
 }
 
-.blob{
-  position:absolute;
-  width:420px;
-  height:420px;
-  background:radial-gradient(circle,#0052ff33,#0052ff00 70%);
+@keyframes bgMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+
+/* floating shapes */
+.shape{
+  position:fixed;
   border-radius:50%;
-  animation:move 28s infinite alternate ease-in-out;
+  opacity:.35;
+  filter:blur(6px);
+  animation:float 22s linear infinite;
+  z-index:-1;
 }
 
-.blob.b1{top:-120px;left:-120px;animation-duration:32s}
-.blob.b2{top:30%;right:-150px;animation-duration:36s}
-.blob.b3{bottom:-140px;left:30%;animation-duration:40s}
-
-@keyframes move{
-  0%{transform:translate(0,0)}
-  100%{transform:translate(120px,80px)}
+.s1{
+  width:260px;height:260px;
+  background:#0052ff;
+  top:10%;left:5%;
+}
+.s2{
+  width:320px;height:320px;
+  background:#3b82f6;
+  top:60%;left:10%;
+  animation-duration:28s;
+}
+.s3{
+  width:220px;height:220px;
+  background:#ff4ecd;
+  top:30%;right:8%;
+  animation-duration:24s;
+}
+.s4{
+  width:380px;height:380px;
+  background:#93c5fd;
+  bottom:-120px;right:20%;
+  animation-duration:30s;
 }
 
-/* ===== MAIN LAYOUT ===== */
+@keyframes float{
+  0%{transform:translateY(0) translateX(0)}
+  50%{transform:translateY(-120px) translateX(60px)}
+  100%{transform:translateY(0) translateX(0)}
+}
+
+/* ================= LAYOUT ================= */
 #landing{
   height:100vh;
   display:flex;
-  justify-content:center;
   align-items:center;
+  justify-content:center;
 }
 
-.hero{
-  width:1100px;
-  background:rgba(255,255,255,0.95);
-  backdrop-filter:blur(12px);
-  border-radius:28px;
-  padding:60px;
-  display:grid;
-  grid-template-columns:1.2fr 1fr;
-  gap:40px;
-  box-shadow:0 40px 120px rgba(0,0,0,.15);
+.app{
+  width:1200px;
+  padding:50px;
+}
+
+/* header */
+.header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:40px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
 }
 
 .logo{
-  width:60px;height:60px;
+  width:52px;height:52px;
   background:var(--base);
-  border-radius:16px;
+  border-radius:14px;
   color:white;
-  font-size:30px;
   font-weight:900;
+  font-size:26px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
-.hero h1{font-size:44px;margin:20px 0}
-.hero p{font-size:17px;color:var(--muted)}
-
-.searchBox{
-  margin:20px 0;
-  display:flex;
-  gap:10px;
+.brand span{
+  font-size:20px;
+  font-weight:600;
 }
 
-.searchInput{
+/* ================= HERO ================= */
+.hero{
+  display:grid;
+  grid-template-columns:1.2fr 1fr;
+  gap:40px;
+}
+
+.hero-card{
+  background:rgba(255,255,255,.85);
+  backdrop-filter:blur(14px);
+  border-radius:26px;
+  padding:50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.18);
+}
+
+.hero-card h1{
+  font-size:44px;
+  margin:0 0 16px;
+}
+
+.hero-card p{
+  font-size:18px;
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* search */
+.search{
+  margin:26px 0;
+  display:flex;
+  gap:12px;
+}
+
+.search input{
   flex:1;
-  padding:12px;
+  padding:16px;
   font-size:16px;
-  border-radius:10px;
+  border-radius:14px;
   border:1px solid #dbe1f0;
 }
 
-.searchBtn{
-  padding:12px 26px;
+.search button{
+  padding:16px 34px;
   border:none;
-  border-radius:10px;
-  background:var(--base);
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
   color:white;
-  font-size:15px;
+  font-size:16px;
   cursor:pointer;
+  box-shadow:0 16px 40px rgba(0,82,255,.35);
 }
 
-.start{
+.actions{
+  display:flex;
+  gap:16px;
   margin-top:10px;
-  padding:14px 40px;
+}
+
+.primary{
+  padding:16px 40px;
   font-size:17px;
   border:none;
-  border-radius:12px;
-  background:linear-gradient(135deg,var(--base),#3b82f6);
+  border-radius:14px;
+  background:linear-gradient(135deg,var(--base),var(--base2));
   color:white;
   cursor:pointer;
 }
 
-.panel{
-  background:#f7f9ff;
-  padding:30px;
-  border-radius:22px;
-  box-shadow:inset 0 0 0 1px #e5e7eb;
+.secondary{
+  padding:16px 40px;
+  font-size:17px;
+  border-radius:14px;
+  background:white;
+  border:2px solid var(--base);
+  color:var(--base);
+  cursor:pointer;
 }
-.panel div{margin:14px 0;font-size:16px}
 
-/* ===== QUIZ PAGE ===== */
+/* ================= SIDE PANEL ================= */
+.side{
+  display:grid;
+  gap:22px;
+}
+
+.tile{
+  background:rgba(255,255,255,.9);
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 30px 80px rgba(0,0,0,.15);
+  font-size:18px;
+}
+
+/* ================= QUIZ PAGE ================= */
 #quizPage{
   position:absolute;
   inset:0;
-  background:transparent;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(16px);
   transform:translateY(100%);
   transition:1s cubic-bezier(.77,0,.18,1);
   overflow:auto;
 }
-#quizPage.active{transform:translateY(0)}
+
+#quizPage.active{
+  transform:translateY(0);
+}
 
 .quizWrap{
   width:900px;
-  margin:60px auto;
+  margin:80px auto;
 }
+
 .quizCard{
   background:white;
-  padding:46px;
-  border-radius:26px;
-  box-shadow:0 30px 90px rgba(0,0,0,.15);
-  animation:fade .6s ease;
+  border-radius:28px;
+  padding:50px;
+  box-shadow:0 40px 120px rgba(0,0,0,.2);
+  animation:fadeUp .6s ease;
 }
-@keyframes fade{
-  from{opacity:0;transform:translateY(30px)}
-  to{opacity:1}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:none}
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🌈 BACKGROUND ANIMATION -->
-<div class="bg-anim">
-  <div class="blob b1"></div>
-  <div class="blob b2"></div>
-  <div class="blob b3"></div>
-</div>
+<!-- BACKGROUND -->
+<div class="animated-bg"></div>
+<div class="shape s1"></div>
+<div class="shape s2"></div>
+<div class="shape s3"></div>
+<div class="shape s4"></div>
 
-<!-- LANDING -->
 <div id="landing">
-  <div class="hero">
-    <div>
-      <div class="logo">B</div>
-      <h1>Base Knowledge Portal</h1>
-      <p>
-        Official-style Base ecosystem search & quiz platform.  
-        Learn more at <a href="https://base.org" target="_blank">base.org</a>
-      </p>
+  <div class="app">
 
-      <!-- SEARCH -->
-      <div class="searchBox">
-        <input class="searchInput" id="q" placeholder="Search anything about Base">
-        <button class="searchBtn" onclick="searchBase()">Base Search</button>
+    <!-- HEADER -->
+    <div class="header">
+      <div class="brand">
+        <div class="logo">B</div>
+        <span>Base Network</span>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <div class="hero">
+
+      <div class="hero-card">
+        <h1>Base Knowledge & Search Portal</h1>
+        <p>
+          A professional, animated, desktop-first portal built for the
+          Base ecosystem. Search official Base information and test your
+          knowledge through an interactive quiz experience.
+        </p>
+
+        <div class="search">
+          <input id="q" placeholder="Search anything about Base (docs, fees, L2, OP Stack)">
+          <button onclick="searchBase()">Base Search</button>
+        </div>
+
+        <div class="actions">
+          <button class="primary" onclick="startQuiz()">Start Quiz</button>
+          <button class="secondary" onclick="window.open('https://base.org','_blank')">
+            Visit Base.org
+          </button>
+        </div>
       </div>
 
-      <button class="start" onclick="startQuiz()">Start Quiz</button>
+      <div class="side">
+        <div class="tile">⚡ Ethereum Layer 2 powered by Coinbase</div>
+        <div class="tile">🔍 Official Base-focused Search</div>
+        <div class="tile">🧠 Knowledge & Contribution Quiz</div>
+        <div class="tile">🎨 Animated Professional UI</div>
+      </div>
+
     </div>
 
-    <div class="panel">
-      <div>⚡ Ethereum Layer 2</div>
-      <div>🔍 Base Official Search</div>
-      <div>🧠 Knowledge Quiz</div>
-      <div>🎨 Animated UI</div>
-    </div>
   </div>
 </div>
 
@@ -197,7 +319,7 @@ body{
 <div id="quizPage">
   <div class="quizWrap">
     <div class="quizCard">
-      Quiz page yahan rahega (same logic as pehle)
+      Quiz portal yahan load hoga (next step me full quiz attach kar denge)
     </div>
   </div>
 </div>
@@ -212,6 +334,7 @@ function searchBase(){
     "_blank"
   );
 }
+
 function startQuiz(){
   document.getElementById("quizPage").classList.add("active");
 }
