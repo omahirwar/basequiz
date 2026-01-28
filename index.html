@@ -10,19 +10,19 @@
   --blue:#0052ff;
   --purple:#6d5cff;
   --pink:#ff4ecd;
-  --bg:#0b0f1a;
-  --card:#12172a;
-  --text:#ffffff;
-  --muted:#9aa3c7;
+  --bg:#070b18;
+  --card:#0f1633;
+  --glow:0 0 40px rgba(0,82,255,.45);
 }
 
 *{box-sizing:border-box}
 
 body{
   margin:0;
-  font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-  background:radial-gradient(circle at top left,#1a1f3c,#0b0f1a);
-  color:var(--text);
+  font-family:Inter,Segoe UI,Arial,sans-serif;
+  background:
+    radial-gradient(circle at top,#1c245f,#070b18 60%);
+  color:#fff;
   overflow:hidden;
 }
 
@@ -30,86 +30,79 @@ body{
 #landing{
   height:100vh;
   display:flex;
-  align-items:center;
   justify-content:center;
+  align-items:center;
 }
 
 .hero{
   width:1100px;
-  background:linear-gradient(135deg,var(--blue),var(--purple));
-  border-radius:28px;
   padding:60px;
+  border-radius:30px;
+  background:linear-gradient(135deg,#0d1440,#121b5a);
+  box-shadow:0 50px 150px rgba(0,0,0,.7);
   display:grid;
   grid-template-columns:1.2fr 1fr;
-  gap:40px;
-  box-shadow:0 40px 120px rgba(0,0,0,.6);
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:16px;
+  gap:50px;
 }
 
 .logo{
-  width:56px;
-  height:56px;
-  border-radius:16px;
-  background:white;
+  width:64px;
+  height:64px;
+  border-radius:18px;
+  background:#fff;
   color:#0052ff;
+  font-size:32px;
   font-weight:900;
-  font-size:28px;
   display:flex;
   align-items:center;
   justify-content:center;
 }
 
 .hero h1{
-  font-size:44px;
-  margin:30px 0 16px;
+  font-size:48px;
+  margin:24px 0 14px;
 }
 
 .hero p{
   font-size:18px;
-  color:#e6e9ff;
+  color:#cfd6ff;
   max-width:480px;
 }
 
-.start-btn{
-  margin-top:30px;
-  padding:18px 40px;
+.start{
+  margin-top:28px;
+  padding:18px 42px;
   font-size:18px;
   border:none;
-  border-radius:14px;
-  background:linear-gradient(135deg,var(--pink),#ff8ad8);
-  color:white;
-  cursor:pointer;
-  box-shadow:0 20px 40px rgba(0,0,0,.4);
-}
-
-.stats{
-  background:rgba(255,255,255,.15);
-  border-radius:22px;
-  padding:32px;
-  display:grid;
-  gap:18px;
-}
-
-.stat{
-  background:rgba(0,0,0,.25);
-  padding:18px;
   border-radius:16px;
-  font-size:16px;
+  background:linear-gradient(135deg,var(--pink),#ff85da);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 20px 50px rgba(255,78,205,.45);
 }
 
-/* ---------- QUIZ PAGE ---------- */
+.panel{
+  background:rgba(255,255,255,.06);
+  border-radius:24px;
+  padding:32px;
+  box-shadow:inset 0 0 40px rgba(255,255,255,.06);
+}
+
+.panel div{
+  padding:16px;
+  margin-bottom:14px;
+  border-radius:16px;
+  background:rgba(0,0,0,.35);
+}
+
+/* ---------- QUIZ ---------- */
 #quizPage{
   position:absolute;
   inset:0;
-  background:linear-gradient(135deg,#0b0f1a,#151a3a);
+  background:
+    radial-gradient(circle at top,#1b225a,#070b18 70%);
   transform:translateY(100%);
-  transition:.9s cubic-bezier(.77,0,.18,1);
-  overflow:auto;
+  transition:1s cubic-bezier(.77,0,.18,1);
 }
 
 #quizPage.active{
@@ -117,58 +110,69 @@ body{
 }
 
 .quiz-wrap{
-  width:1000px;
-  margin:40px auto;
-}
-
-.quiz-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
-}
-
-.quiz-header h2{
-  font-size:32px;
+  width:900px;
+  margin:80px auto;
 }
 
 .quiz-card{
-  background:linear-gradient(135deg,#12172a,#1b2146);
-  border-radius:24px;
-  padding:36px;
-  margin-bottom:24px;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
+  background:linear-gradient(135deg,#0f1633,#19236b);
+  border-radius:28px;
+  padding:50px;
+  box-shadow:var(--glow),0 40px 120px rgba(0,0,0,.8);
+  animation:slideIn .7s ease;
+}
+
+@keyframes slideIn{
+  from{opacity:0;transform:translateY(40px)}
+  to{opacity:1;transform:none}
 }
 
 .q{
-  font-size:18px;
-  margin-bottom:12px;
+  font-size:26px;
+  margin-bottom:24px;
 }
 
 .opt{
-  margin:8px 0;
-  font-size:16px;
+  margin:12px 0;
+  padding:14px;
+  border-radius:14px;
+  background:rgba(0,0,0,.35);
+  cursor:pointer;
+  transition:.3s;
 }
 
-.submit{
-  margin-top:20px;
-  padding:16px;
+.opt:hover{
+  background:rgba(0,82,255,.25);
+}
+
+.opt input{margin-right:10px}
+
+.next{
+  margin-top:30px;
   width:100%;
+  padding:18px;
   font-size:18px;
   border:none;
-  border-radius:14px;
+  border-radius:16px;
   background:linear-gradient(135deg,var(--blue),var(--purple));
   color:white;
   cursor:pointer;
+  box-shadow:var(--glow);
 }
 
-.score{
-  margin-top:20px;
-  padding:20px;
-  background:linear-gradient(135deg,#1e2555,#28307a);
-  border-radius:18px;
-  font-size:20px;
+.progress{
+  margin-bottom:20px;
+  font-size:15px;
+  color:#cfd6ff;
+}
+
+.result{
   text-align:center;
+  font-size:28px;
+  padding:40px;
+  background:linear-gradient(135deg,#19236b,#2731a3);
+  border-radius:28px;
+  box-shadow:var(--glow);
 }
 </style>
 </head>
@@ -179,25 +183,19 @@ body{
 <div id="landing">
   <div class="hero">
     <div>
-      <div class="brand">
-        <div class="logo">B</div>
-        <h3>Base Network</h3>
-      </div>
-
-      <h1>Base Knowledge & Contribution Quiz</h1>
+      <div class="logo">B</div>
+      <h1>Base Quiz Portal</h1>
       <p>
-        A professional verification portal built for the Base ecosystem.
-        Test your understanding of Ethereum Layer 2, OP Stack, and onchain adoption.
+        A professional animated knowledge verification experience
+        built for the Base ecosystem.
       </p>
-
-      <button class="start-btn" onclick="startQuiz()">Start Quiz</button>
+      <button class="start" onclick="startQuiz()">Start Quiz</button>
     </div>
-
-    <div class="stats">
-      <div class="stat">⚡ Ethereum Layer 2</div>
-      <div class="stat">🧠 30 Knowledge Questions</div>
-      <div class="stat">🏆 Contribution Proof</div>
-      <div class="stat">🔵 Base Ecosystem Focused</div>
+    <div class="panel">
+      <div>⚡ Ethereum Layer 2</div>
+      <div>🧠 30 Curated Questions</div>
+      <div>🎯 Answer Submit Flow</div>
+      <div>💎 Professional UI</div>
     </div>
   </div>
 </div>
@@ -205,29 +203,17 @@ body{
 <!-- QUIZ PAGE -->
 <div id="quizPage">
   <div class="quiz-wrap">
-    <div class="quiz-header">
-      <h2>Base Quiz Portal</h2>
-      <span>30 Questions</span>
-    </div>
-
-    <div id="quiz"></div>
-
-    <button class="submit" onclick="submitQuiz()">Submit Quiz</button>
-    <div class="score" id="score">Score: 0 / 30</div>
+    <div class="quiz-card" id="card"></div>
   </div>
 </div>
 
 <script>
-function startQuiz(){
-  document.getElementById("quizPage").classList.add("active");
-}
-
 const questions=[
 ["Base is a","Ethereum Layer 2",["Layer 1","Ethereum Layer 2","Sidechain","Testnet"]],
 ["Built by","Coinbase",["Binance","Coinbase","Ethereum","Polygon"]],
-["Uses stack","OP Stack",["ZK","OP Stack","Cosmos","Substrate"]],
+["Uses","OP Stack",["ZK","OP Stack","Cosmos","Substrate"]],
 ["Secured by","Ethereum",["Solana","Ethereum","Polygon","Base"]],
-["Main goal","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT only","Private"]],
+["Goal","Scale Ethereum",["Replace ETH","Scale Ethereum","NFT only","Private"]],
 ["Official site","base.org",["base.com","base.io","base.org","coinbase.org"]],
 ["EVM compatible","Yes",["No","Yes","Partial","Unknown"]],
 ["Low fees","Yes",["No","Yes","High","Fixed"]],
@@ -239,27 +225,41 @@ while(questions.length<30){
   questions.push(...questions.slice(0,30-questions.length));
 }
 
-const quiz=document.getElementById("quiz");
+let index=0, score=0;
 
-questions.forEach((q,i)=>{
-  quiz.innerHTML+=`
-  <div class="quiz-card">
-    <div class="q">${i+1}. ${q[0]}</div>
+function startQuiz(){
+  document.getElementById("quizPage").classList.add("active");
+  render();
+}
+
+function render(){
+  const q=questions[index];
+  document.getElementById("card").innerHTML=`
+    <div class="progress">Question ${index+1} / 30</div>
+    <div class="q">${q[0]}</div>
     ${q[2].map(o=>`
-      <div class="opt">
-        <input type="radio" name="q${i}" value="${o}"> ${o}
-      </div>`).join("")}
-  </div>`;
-});
+      <label class="opt">
+        <input type="radio" name="opt" value="${o}"> ${o}
+      </label>`).join("")}
+    <button class="next" onclick="submitAnswer()">Submit Answer</button>
+  `;
+}
 
-function submitQuiz(){
-  let s=0;
-  questions.forEach((q,i)=>{
-    const a=document.querySelector('input[name="q'+i+'"]:checked');
-    if(a && a.value===q[1]) s++;
-  });
-  document.getElementById("score").innerText=
-  "Score: "+s+" / 30";
+function submitAnswer(){
+  const a=document.querySelector("input[name='opt']:checked");
+  if(!a) return alert("Select an option first");
+  if(a.value===questions[index][1]) score++;
+  index++;
+  if(index<30) render();
+  else showResult();
+}
+
+function showResult(){
+  document.getElementById("card").innerHTML=`
+    <div class="result">
+      🎉 Quiz Completed<br><br>
+      Score: ${score} / 30
+    </div>`;
 }
 </script>
 
